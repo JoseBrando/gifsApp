@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Query } from '@angular/core';
 
 @Injectable({
   providedIn: 'root' // Servicio global en el root (El servicio puede usarse en cualquier parte de la app)
@@ -13,9 +13,13 @@ export class GifsService {
 
   constructor() { }
 
-  buscarGifs(query: string) {
-    this._historial.unshift( query );
+  buscarGifs(query: string = '') {
 
-    console.log(this._historial);
+    query = query.trim().toLocaleLowerCase();
+
+    if (!this._historial.includes( query )) {
+      this._historial.unshift( query );
+      this._historial = this._historial.splice(0, 10);
+    }
   }
 }
