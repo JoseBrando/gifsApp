@@ -1,22 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../shared/shared.module';
 
 // Components
 import { GifsPageComponent } from './gifs-page/gifs-page.component';
+import { SearchComponent } from './search/search.component';
+
 
 
 
 @NgModule({
   declarations: [
-    GifsPageComponent
+    GifsPageComponent,
+    SearchComponent
   ],
   exports: [
-    GifsPageComponent
+    GifsPageComponent,
   ],
   imports: [
-    CommonModule,
-    SharedModule
+    CommonModule
   ]
 })
 export class GifsModule { }
