@@ -1,8 +1,20 @@
+<!-- <ul>
+  <li *ngFor="let item of resultados">
+    {{ item.title }}
+  </li>
+</ul> -->
+
 <div class="row">
-    <div class="col">
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-      In consectetur velit, quasi maxime quia sunt corporis, quo 
-      sint libero ipsa ipsam deleniti ratione! Est voluptas minus 
-      distinctio saepe repellat. Impedit.
+  <div *ngFor="let item of resultados" class="col-md-4 col-sm-6">
+
+    <div class="card">
+      <div class="card-body">
+        <img [src]="item.images.downsized_medium.url" alt="" class="card-img-top">
+        <p class="card-text">
+          <!-- {{ item.title }} -->
+        </p>
+      </div>
     </div>
+
+  </div>
 </div>
