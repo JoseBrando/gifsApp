@@ -9,14 +9,19 @@ export class GifsService {
 
   private apiKey: string = 'RfklaJpNBEUX5jVpw6PJFuVkwXJlz38D';
   private _historial: string[] = [];
-  public resultados: any[] = [];
+  private _resultados: any[] = [];
 
   get historial() {
     return [...this._historial];
   }
 
+  get resultados() {
+    return [...this._resultados];
+  }
+
   constructor(private http: HttpClient) {
     this._historial = JSON.parse(localStorage.getItem('historial')!) || [];
+    this._resultados = JSON.parse(localStorage.getItem('data')!) || [];
   }
 
   buscarGifs(query: string = '') {
@@ -30,11 +35,11 @@ export class GifsService {
       localStorage.setItem('historial', JSON.stringify(this._historial));
     }
 
-    this.http.get('https://api.giphy.com/v1/gifs/search?api_key=RfklaJpNBEUX5jVpw6PJFuVkwXJlz38D&q=anime&limit=20')
+    this.http.get(`https://api.giphy.com/v1/gifs/search?api_key=RfklaJpNBEUX5jVpw6PJFuVkwXJlz38D&q=${query}&limit=20`)
     .subscribe(
       (response: any) => {
-      console.log(response.data);
-      this.resultados = response.data;
+      this._resultados = response.data;
+      localStorage.setItem('data', JSON.stringify(this.resultados));
     });
   }
 }
